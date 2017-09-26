@@ -12,11 +12,11 @@
 #define restrict __restrict__
 
 //precondition: str MUST be null-terminated
-/*char *strtok_sa(char *restrict str, size_t *restrict strmax,
+char *strtok_sa(char *restrict str, size_t *restrict strmax,
      const char *restrict delim, char **restrict ptr)
 {
-	if ()
-}*/
+	return strtok_r(str, delim, ptr);
+}
 
 int main () 
 {
@@ -34,7 +34,14 @@ int main ()
 
 	printf("%s\n", x);
 
-	printf("%lu\n", strlen(x));
+	printf("%lu\n\n", strlen(x));
+
+	char s3[] = "-abc-=-def";
+	char *sp2, *x2;
+	size_t maxstr = 10;
+	x2 = strtok_sa(s3, &maxstr, "-", &sp2);
+
+	printf("%s\n", x);
 
 	return 0;
 } 

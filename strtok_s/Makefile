@@ -3,3 +3,6 @@ strtoks: strtoks.o
 
 strtoks.o: strtoks.cpp
 	g++ --std=c++11 -g -c -Wall strtoks.cpp
+
+clean:
+	rm strtoks *.o
