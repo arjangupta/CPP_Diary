@@ -41,7 +41,12 @@ int main ()
 	size_t maxstr = 10;
 	x2 = strtok_sa(s3, &maxstr, "-", &sp2);
 
-	printf("%s\n", x);
+	printf("%s\n", x2);
+
+	char s4[] = "this string is 23 long";
+	char s5[] = "abc";
+
+	printf("%lu and %lu\n", sizeof(s4), sizeof(s5));
 
 	return 0;
 } 
