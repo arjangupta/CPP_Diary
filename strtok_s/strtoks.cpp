@@ -14,8 +14,25 @@
 //precondition: str MUST be null-terminated
 char *strtok_sa(char *restrict str, size_t *restrict strmax,
      const char *restrict delim, char **restrict ptr)
-{
-	return strtok_r(str, delim, ptr);
+{	
+	if (str == NULL || strmax == NULL || delim == NULL || ptr == NULL)
+	{
+		std::cout << "debug1\n";
+		return NULL;
+	}
+	else if (*strmax != sizeof(str)) //will not work, sizeof is being called on ptr
+	{
+		std::cout << "debug2 - " << sizeof(str) << std::endl;
+		return NULL;
+	}
+	else
+	{
+		char *restrict newStr = strtok_r(str, delim, ptr);
+		*strmax = sizeof(newStr);
+		return newStr;
+	}
+	std::cout << "debug3\n";
+	return NULL;
 }
 
 int main () 
@@ -38,7 +55,7 @@ int main ()
 
 	char s3[] = "-abc-=-def";
 	char *sp2, *x2;
-	size_t maxstr = 10;
+	size_t maxstr = 11;
 	x2 = strtok_sa(s3, &maxstr, "-", &sp2);
 
 	printf("%s\n", x2);
@@ -46,7 +63,7 @@ int main ()
 	char s4[] = "this string is 23 long";
 	char s5[] = "abc";
 
-	printf("%lu and %lu\n", sizeof(s4), sizeof(s5));
+	printf("%lu and %lu and %lu\n", sizeof(s3), sizeof(s4), sizeof(s5));
 
 	return 0;
 } 
