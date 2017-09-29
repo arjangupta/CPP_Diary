@@ -9,9 +9,9 @@
 /* restrict does not natively exist in C++, but
  * this program will be later translated to C.
  */
+#define PLAYING_AROUND true
 #define restrict __restrict__
 
-//precondition: str MUST be null-terminated
 char *strtok_sa(char *restrict str, size_t *restrict strmax,
      const char *restrict delim, char **restrict ptr)
 {	
@@ -27,7 +27,7 @@ char *strtok_sa(char *restrict str, size_t *restrict strmax,
 	}
 	else
 	{
-		char *restrict newStr = strtok_r(str, delim, ptr);
+		char* newStr = strtok_r(str, delim, ptr);
 		*strmax = sizeof(newStr);
 		return newStr;
 	}
@@ -37,6 +37,7 @@ char *strtok_sa(char *restrict str, size_t *restrict strmax,
 
 int main () 
 {
+#if PLAYING_AROUND
 	char s1[] = "-abc-=-def";
 	char *sp, *x;
 	x = strtok_r(s1, "-", &sp);	// x = "abc", sp = "=-def"
@@ -65,6 +66,8 @@ int main ()
 
 	printf("%lu and %lu and %lu\n", sizeof(s3), sizeof(s4), sizeof(s5));
 
+	std::cout << strcspn(s4, "123i") << std::endl;
+#endif //PLAYIING_AROUND
 	return 0;
 } 
 
