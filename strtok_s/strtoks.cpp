@@ -157,12 +157,12 @@ int main ()
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "xyz", saveptr = "def&pqr"
 	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "def", saveptr = "pqr"
-	/*std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	//std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "pqr", saveptr = NULL
-	std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	//std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
-	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);*/
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
 
 	/*char *x4 = NULL;
 	std::cout << x4 << std::endl;*/
