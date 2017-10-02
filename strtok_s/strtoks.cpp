@@ -197,6 +197,8 @@ int main ()
 	/*char *x4 = NULL;
 	std::cout << x4 << std::endl;*/
 
+	std::cout << "\nEND.\n\n";
+
 	return 0;
 } 
 
