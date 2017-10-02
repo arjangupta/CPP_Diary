@@ -14,6 +14,12 @@
  */
 #define restrict __restrict__
 
+/*
+ * This function tries to imitate what the standard strtok_s would do.
+ * strtok_s - http://en.cppreference.com/w/c/string/byte/strtok
+ *
+ * CURRENT PRE-CONDITION: str MUST be a null-terminated string.
+ */
 char *
 strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict delim, char **restrict ptr)
 {
