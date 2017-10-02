@@ -24,7 +24,12 @@ char *
 strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict delim, char **restrict ptr)
 {
 	char *endTok;
-	static size_t __strmax = 0;
+	static size_t __strmax;
+
+	if (str != NULL)
+	{
+		__strmax = 0;
+	}
 
 	if (__strmax == 0)
 	{
@@ -33,6 +38,7 @@ strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict del
 			std::cout << "debug(-3)" << std::endl;
 			return NULL;
 		}
+		__strmax = *strmax;
 	} 
 	else if (__strmax != *strmax)
 	{
@@ -154,11 +160,29 @@ int main ()
 
 #endif //PLAYING_AROUND
 
-	char s6[] = "& && "; //"abc&xyz&def&pqr";
+	char s6[] = "abc&xyz&def&pqr";
 	char *saveptr = NULL, *x3 = NULL;
-	//const char *dlmtr = "&";
 	size_t maxsz = 3 + 1 + 3 + 1 + 3 + 1 + 3;
 	x3 = strtok_sa(s6, &maxsz, "&", &saveptr);	// x3 = "abc", saveptr = "xyz&def&pqr"
+	std::cout << "First call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "xyz", saveptr = "def&pqr"
+	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "def", saveptr = "pqr"
+	//std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "pqr", saveptr = NULL
+	//std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+
+	std::cout << "\nNEXT TEST\n\n";
+
+	char s7[] = "& && ";
+	saveptr = NULL;
+	x3 = NULL;
+	const char dlmtr[2] = "&";
+	maxsz = 3 + 1 + 3 + 1 + 3 + 1 + 3;
+	x3 = strtok_sa(s7, &maxsz, dlmtr, &saveptr);	// x3 = "abc", saveptr = "xyz&def&pqr"
 	std::cout << "First call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "xyz", saveptr = "def&pqr"
 	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
