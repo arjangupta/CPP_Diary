@@ -13,7 +13,7 @@
 #define restrict __restrict__
 
 char *
-strtok_r__ (char *restrict str, const char *restrict delim, char **restrict ptr)
+strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict delim, char **restrict ptr)
 {
 	char *endTok;
 
@@ -46,39 +46,16 @@ strtok_r__ (char *restrict str, const char *restrict delim, char **restrict ptr)
 	return str;
 }
 
-char *strtok_sa(char *restrict str, size_t *restrict strmax,
-     const char *restrict delim, char **restrict ptr)
-{	
-	if (str == NULL || strmax == NULL || delim == NULL || ptr == NULL)
-	{
-		std::cout << "debug1\n";
-		return NULL;
-	}
-	else if (*strmax != sizeof(str)) //will not work, sizeof is being called on ptr
-	{
-		std::cout << "debug2 - " << sizeof(str) << std::endl;
-		return NULL;
-	}
-	else
-	{
-		char* newStr = strtok_r(str, delim, ptr);
-		*strmax = sizeof(newStr);
-		return newStr;
-	}
-	std::cout << "debug3\n";
-	return NULL; 
-}
-
 int main () 
 {
 #if PLAYING_AROUND
 	char s1[] = "-abc-=-def";
 	char *sp, *x;
-	x = strtok_r__(s1, "-", &sp);	// x = "abc", sp = "=-def"
+	x = strtok_r(s1, "-", &sp);	// x = "abc", sp = "=-def"
 	std::cout << x << std::endl;
-	x = strtok_r__(NULL, "-=", &sp);	// x = "def", sp = NULL
+	x = strtok_r(NULL, "-=", &sp);	// x = "def", sp = NULL
 	std::cout << x << std::endl;
-	x = strtok_r__(NULL, "=", &sp);	// x = NULL
+	x = strtok_r(NULL, "=", &sp);	// x = NULL
 
 	printf("%s\n", x);
 
@@ -110,7 +87,7 @@ int main ()
 	std::cout << psn2 << std::endl;
 	std::cout << ( *(s5 + psn2) == '\0' ) << std::endl << std::endl;
 
-	x = strtok_r__(NULL, "er", &sp);
+	x = strtok_r(NULL, "er", &sp);
 
 	printf("%s\n", x);
 
