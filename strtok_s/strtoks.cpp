@@ -148,7 +148,7 @@ int main ()
 
 #endif //PLAYING_AROUND
 
-	char s6[] = "abc&xyz&def&pqr";
+	char s6[] = "& && "; //"abc&xyz&def&pqr";
 	char *saveptr = NULL, *x3 = NULL;
 	//const char *dlmtr = "&";
 	size_t maxsz = 3 + 1 + 3 + 1 + 3 + 1 + 3;
@@ -157,12 +157,15 @@ int main ()
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "xyz", saveptr = "def&pqr"
 	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "def", saveptr = "pqr"
-	std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
+	/*std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "pqr", saveptr = NULL
 	std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << ", maxsz:" << maxsz << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
-	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);*/
+
+	/*char *x4 = NULL;
+	std::cout << x4 << std::endl;*/
 
 	return 0;
 } 
