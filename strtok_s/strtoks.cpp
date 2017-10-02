@@ -13,7 +13,7 @@
 #define restrict __restrict__
 
 char *
-strtok_r__ (char *str, const char *delim, char **ptr)
+strtok_r__ (char *restrict str, const char *restrict delim, char **restrict ptr)
 {
 	char *endTok;
 
