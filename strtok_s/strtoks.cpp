@@ -153,13 +153,13 @@ int main ()
 	//const char *dlmtr = "&";
 	size_t maxsz = 3 + 1 + 3 + 1 + 3 + 1 + 3;
 	x3 = strtok_sa(s6, &maxsz, "&", &saveptr);	// x3 = "abc", saveptr = "xyz&def&pqr"
-	std::cout << "First call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	std::cout << "First call, x3: " << x3 << ", saveptr: " << saveptr << ", *strmax:" << *strmax << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "xyz", saveptr = "def&pqr"
-	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << ", *strmax:" << *strmax << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "def", saveptr = "pqr"
-	std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << ", *strmax:" << *strmax << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "pqr", saveptr = NULL
-	std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << ", *strmax:" << *strmax << std::endl;
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
 	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
