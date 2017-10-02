@@ -3,46 +3,101 @@
  * Purpose: Write a strtok wrapper called strtok_s
  */
 
+//#define __STDC_WANT_LIB_EXT1__ 1
 #include <string.h>
 #include <iostream>
+
+#define PLAYING_AROUND false
 
 /* restrict does not natively exist in C++, but
  * this program will be later translated to C.
  */
-#define PLAYING_AROUND true
 #define restrict __restrict__
 
 char *
 strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict delim, char **restrict ptr)
 {
 	char *endTok;
+	static size_t __strmax = 0;
+
+	if (__strmax == 0)
+	{
+		if (*strmax == 0 || *strmax > SIZE_MAX)
+		{
+			std::cout << "debug(-3)" << std::endl;
+			return NULL;
+		}
+	} 
+	else if (__strmax != *strmax)
+	{
+		std::cout << "debug(-2)" << std::endl;
+		return NULL;
+	}
+
+	if (strmax == NULL || delim == NULL || ptr == NULL)
+	{
+		std::cout << "debug(-1)" << std::endl;
+		return NULL;
+	}
 
 	if (str == NULL)
-		str = *ptr;
+	{
+		if (*ptr == NULL)
+		{
+			std::cout << "debug0" << std::endl;
+			return NULL;
+		} else {
+			str = *ptr;
+		}
+	}
+
+	std::cout << "debug0.5" << std::endl;
 
 	if (*str == '\0')
 	{
 		*ptr = str;
+		std::cout << "debug1" << std::endl;
 		return NULL;
+	}
+
+	if (*strmax < strspn (str, delim))
+	{
+		std::cout << "debug2" << std::endl;
+		return NULL;
+	} else {
+		*strmax = *strmax - strspn (str, delim);
 	}
 
 	str += strspn (str, delim); //accept
+
 	if (*str == '\0')
 	{
 		*ptr = str;
+		std::cout << "debug3" << std::endl;
 		return NULL;
 	}
 
+	if (*strmax < strcspn (str, delim))
+	{
+		std::cout << "debug4" << std::endl;
+		return NULL;
+	} else {
+		*strmax = *strmax - strcspn (str, delim);
+	}
+
 	endTok = str + strcspn (str, delim); //reject
+
 	if (*endTok == '\0')
 	{
 		*ptr = endTok;
+		std::cout << "debug5 - " << str << std::endl;
 		return str;
 	}
 
-	/* Terminate the token and make *SAVE_PTR point past it.  */
 	*endTok = '\0';
 	*ptr = endTok + 1;
+	__strmax = *strmax;
+	std::cout << "debug6 - " << str << std::endl;
 	return str;
 }
 
@@ -91,7 +146,24 @@ int main ()
 
 	printf("%s\n", x);
 
-#endif //PLAYIING_AROUND
+#endif //PLAYING_AROUND
+
+	char s6[] = "abc&xyz&def&pqr";
+	char *saveptr = NULL, *x3 = NULL;
+	//const char *dlmtr = "&";
+	size_t maxsz = 3 + 1 + 3 + 1 + 3 + 1 + 3;
+	x3 = strtok_sa(s6, &maxsz, "&", &saveptr);	// x3 = "abc", saveptr = "xyz&def&pqr"
+	std::cout << "First call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "xyz", saveptr = "def&pqr"
+	std::cout << "Second call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "def", saveptr = "pqr"
+	std::cout << "Third call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);	// x3 = "pqr", saveptr = NULL
+	std::cout << "Fourth call, x3: " << x3 << ", saveptr: " << saveptr << std::endl;
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+	x3 = strtok_sa(NULL, &maxsz, "&", &saveptr);
+
 	return 0;
 } 
 
