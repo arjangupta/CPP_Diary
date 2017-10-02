@@ -30,7 +30,7 @@ strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict del
 	} 
 	else if (__strmax != *strmax)
 	{
-		std::cout << "debug(-2)" << std::endl;
+		std::cout << "debug(-2), __strmax: " << __strmax << std::endl;
 		return NULL;
 	}
 
@@ -51,8 +51,6 @@ strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict del
 		}
 	}
 
-	std::cout << "debug0.5" << std::endl;
-
 	if (*str == '\0')
 	{
 		*ptr = str;
@@ -66,6 +64,7 @@ strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict del
 		return NULL;
 	} else {
 		*strmax = *strmax - strspn (str, delim);
+		__strmax = *strmax;
 	}
 
 	str += strspn (str, delim); //accept
@@ -83,6 +82,7 @@ strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict del
 		return NULL;
 	} else {
 		*strmax = *strmax - strcspn (str, delim);
+		__strmax = *strmax;
 	}
 
 	endTok = str + strcspn (str, delim); //reject
