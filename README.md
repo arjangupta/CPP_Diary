@@ -1,3 +1,3 @@
 # C++ Diary
 
-Record of C++ programs written as practice.
+Record of C++ programs I've written as practice.
