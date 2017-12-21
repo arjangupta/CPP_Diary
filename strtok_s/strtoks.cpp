@@ -115,6 +115,7 @@ strtok_sa (char *restrict str, size_t *restrict strmax, const char *restrict del
 
 int main () 
 {
+
 #if PLAYING_AROUND
 	char s1[] = "-abc-=-def";
 	char *sp, *x;
@@ -199,7 +200,9 @@ int main ()
 
 	std::cout << "\nEND.\n\n";
 
-	return 0;
+	//exit(95);
+
+	return 23;
 } 
 
 
