@@ -11,6 +11,7 @@
 
 /* restrict does not natively exist in C++, but
  * this program will be later translated to C.
+ * TODO: Try to use unique_ptr here
  */
 #define restrict __restrict__
 
