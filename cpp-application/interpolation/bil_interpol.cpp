@@ -38,7 +38,7 @@ double linear_interpolate ( double x1, double x2, double q1, double q2, double x
  * https://www.ajdesigner.com/phpinterpolation/bilinear_interpolation_equation.php
  */
 double bilinear_interpolate ( double x1, double x2, double y1, double y2, double q11, double q21,
-						   	  double q12, double q22, double x_interpol, double y_interpol )
+                              double q12, double q22, double x_interpol, double y_interpol )
 {
 	// Linear interpolate on the top row
 	double top_row_interpol = linear_interpolate( x1, x2, q11, q21, x_interpol );
