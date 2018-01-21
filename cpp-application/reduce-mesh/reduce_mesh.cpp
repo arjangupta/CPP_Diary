@@ -11,21 +11,38 @@
 const size_t total_mesh_height = 3; 
 const size_t total_mesh_width = 3;
 
-void show_mesh ( int** total_mesh, size_t height, size_t width )
+void show_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 {
-	for ( size_t i = 0; i < height; ++i )
+	for ( size_t i = y_start; i < total_mesh_height; ++i )
 	{
-		for ( size_t j = 0; j < width; ++j )
+		for ( size_t j = x_start; j < total_mesh_width; ++j )
 		{
-			std::cout << total_mesh[i][j] << " ";
-		}
+			std::cout << *( *(total_mesh + i) + j) << " ";
+		}		
 		std::cout << std::endl;
-	}	
+	}
+
+	std::cout << std::endl;	
 }
 
-void reduce_mesh ( int** total_mesh, size_t height, size_t width )
+void reduce_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 {
-	
+	std::cout << "x_start is " << x_start << " and y_start is " << y_start << std::endl;
+	show_mesh( total_mesh, x_start, y_start );
+
+	if ( x_start < total_mesh_width - 2 )
+	{
+		reduce_mesh( total_mesh, x_start + 1, y_start );
+	} else if ( y_start < total_mesh_height - 2 ) {
+		reduce_mesh( total_mesh, x_start, y_start + 1 );
+	}
+
+	total_mesh[y_start][x_start] = total_mesh [y_start] [x_start] *
+	                               total_mesh [y_start + 1] [x_start] *
+	                               total_mesh [y_start] [x_start + 1] *
+	                               total_mesh [y_start + 1] [x_start + 1];
+
+	return;
 }
 
 int main ()
@@ -40,13 +57,13 @@ int main ()
 
 		for ( size_t j = 0; j < total_mesh_width; ++j )
 		{
-			total_mesh[i][j]  = 1 + i + j;
+			total_mesh[i][j] = 2;
 		}
 	}
 
-	show_mesh( total_mesh, total_mesh_height, total_mesh_width );
+	reduce_mesh( total_mesh, 0, 0 );
 
-	std::cout << std::endl;
+	show_mesh( total_mesh, 0, 0 );
 
 	return 0;
 }
