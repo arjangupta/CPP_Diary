@@ -4,7 +4,10 @@
  * Reduce a given mesh of points to one point - for example, if
  * we are given a 5 x 5 mesh of 1s, reduce it to a 1 x 1 (1 point)
  * mesh with value 25 (add all the 1s in the mesh). Similarly, if
- * given a 3 x 4 mesh, reduce it to 12.		 
+ * given a 3 x 4 mesh, reduce it to 12.
+ * 
+ * Precondition:
+ * You must give a mesh that is equal to or larger than 2 x 2. 
  */
 
 // Std lib includes
@@ -12,8 +15,8 @@
 #include <cstddef>
 
 // Global consts for mesh sizes (instead of macros)
-const size_t total_mesh_height = 3; 
-const size_t total_mesh_width = 4;
+const size_t total_mesh_height = 6; 
+const size_t total_mesh_width = 11;
 
 // Display the mesh
 void show_mesh ( int** total_mesh, size_t x_start, size_t y_start )
@@ -38,6 +41,12 @@ void reduce_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 	
 	// Display entire mesh, not just our current section
 	show_mesh( total_mesh, 0, 0 );
+
+	// This algo only works for 2 x 2 meshes or larger
+	if ( total_mesh_width < 2 || total_mesh_height < 2 )
+	{
+		return;
+	}
 
 	// Recurse in the x direction
 	if ( x_start < total_mesh_width - 2 )
@@ -68,8 +77,17 @@ void reduce_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 
 int main ()
 {
+	// Tell the user that the dimensions are invalid
+	if ( total_mesh_height < 2 || total_mesh_width < 2 )
+	{
+		std::cout << "\nError: This program only works for 2 x 2 meshes"
+		          << " or larger\n\n";
+		return -1;
+	}
+
 	// Announce
-	std::cout << "\nReduce a given mesh to one point!\n\n";
+	std::cout << "\nReduce a " << total_mesh_height 
+	          << " x " << total_mesh_width << " mesh to one point!\n\n";
 
 	// Declare a 2D array
 	int** total_mesh = new int* [total_mesh_height];
