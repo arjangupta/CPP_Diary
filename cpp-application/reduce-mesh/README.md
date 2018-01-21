@@ -1,6 +1,6 @@
 ### Sample output for this program
 
-Reduce a given mesh to one point!
+Reduce a 3 x 4 mesh to one point!
 
 x_start is 0 and y_start is 0<br />
 1 1 1 1 <br />
