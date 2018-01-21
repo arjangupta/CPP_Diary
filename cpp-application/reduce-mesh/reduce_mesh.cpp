@@ -15,6 +15,7 @@
 const size_t total_mesh_height = 3; 
 const size_t total_mesh_width = 4;
 
+// Display the mesh
 void show_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 {
 	for ( size_t i = y_start; i < total_mesh_height; ++i )
@@ -29,26 +30,35 @@ void show_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 	std::cout << std::endl;	
 }
 
+// Given the starting position on the entire mesh, recursively reduce the mesh
 void reduce_mesh ( int** total_mesh, size_t x_start, size_t y_start )
-{
+{	
+	// Show which point we are on
 	std::cout << "x_start is " << x_start << " and y_start is " << y_start << std::endl;
+	
+	// Display entire mesh, not just our current section
 	show_mesh( total_mesh, 0, 0 );
 
+	// Recurse in the x direction
 	if ( x_start < total_mesh_width - 2 )
 	{
 		reduce_mesh( total_mesh, x_start + 1, y_start );
 	}
 
+	// Recurse in the y direction
 	if ( y_start < total_mesh_height - 2 ) 
 	{
 		reduce_mesh( total_mesh, x_start, y_start + 1 );
 	}
 
+	// If the recursing is done, replace the value at the point with the sum of itself
+	// with its neighbors
 	total_mesh [y_start] [x_start] = total_mesh [y_start] [x_start] +
 	                                 total_mesh [y_start + 1] [x_start] +
 	                                 total_mesh [y_start] [x_start + 1] +
 	                                 total_mesh [y_start + 1] [x_start + 1];
 
+	// Set the neighbors to 0
 	total_mesh [y_start + 1] [x_start] = 0;
 	total_mesh [y_start] [x_start + 1] = 0;
 	total_mesh [y_start + 1] [x_start + 1] = 0;
@@ -58,10 +68,13 @@ void reduce_mesh ( int** total_mesh, size_t x_start, size_t y_start )
 
 int main ()
 {
+	// Announce
 	std::cout << "\nReduce a given mesh to one point!\n\n";
 
+	// Declare a 2D array
 	int** total_mesh = new int* [total_mesh_height];
 
+	// Initialize the 2D array
 	for ( size_t i = 0; i < total_mesh_height; ++i )
 	{
 		total_mesh[i] = new int [total_mesh_width]; 
@@ -72,10 +85,11 @@ int main ()
 		}
 	}
 
+	// Start the work
 	reduce_mesh( total_mesh, 0, 0 );
 
+	// Show the result of all the work
 	std::cout << "Show final mesh: " << std::endl;
-
 	show_mesh( total_mesh, 0, 0 );
 
 	return 0;
