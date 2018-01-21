@@ -27,7 +27,7 @@ x_start is 1 and y_start is 1
 1 1 0 0 
 1 1 0 0 
 
-x_start is 2 and y_start is 1
+x_start is 2 and y_start is 1\
 1 1 6 0 
 1 1 0 0 
 1 1 0 0 
