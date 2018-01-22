@@ -19,6 +19,21 @@
  */
 double linear_interpolate ( double x1, double x2, double q1, double q2, double x_interpol )
 {
+	// Check 1
+	if ( x1 >= x2 )
+	{
+		std::cout << "x1 cannot be larger than or equal to x2. Please rectify." << std::endl;
+		return 0.0;
+	}
+
+	// Check 2
+	if ( x_interpol < x1 || x_interpol > x2 )
+	{
+		std::cout << "x_interpol cannot be smaller than x1 or larger than x2. Please rectify." << std::endl; 
+		return 0.0;
+	}
+
+	// All good, apply the formula
 	return ( ( q1 * ( ( x2 - x_interpol ) / ( x2 - x1 ) ) ) + 
              ( q2 * ( ( x_interpol - x1 ) / ( x2 - x1 ) ) ) );
 }
@@ -52,14 +67,24 @@ double bilinear_interpolate ( double x1, double x2, double y1, double y2, double
 
 int main ()
 {
-	std::cout << "Calculated linear interpolation for data set 1: " 
+	std::cout << "Calculated linear interpolation for data set 1: "
 			  << linear_interpolate( 0.0, 1.0, 180.0, 109.0, (2.0/5.0) ) << std::endl;
 
 	std::cout << "Calculated linear interpolation for data set 2: "
 			  << linear_interpolate( 9.0, 10.0, 249.0, 218.0, (9.0 + (2.0/5.0)) ) << std::endl;
 
-	std::cout << "Calculated bilinear interpolation for data set 3: "
+	std::cout << "Calculated linear interpolation for data set 3: "
+	          << linear_interpolate( 10.0, 10.0, 249.0, 218.0, (9.0 + (2.0/5.0)) ) << std::endl;
+
+	std::cout << "Calculated linear interpolation for data set 4: "
+	          << linear_interpolate( 9.0, 10.0, 249.0, 218.0, (8.0 + (2.0/5.0)) ) << std::endl;
+
+	std::cout << "Calculated bilinear interpolation for data set 5: "
 			  << bilinear_interpolate( 3.0, 4.0, 3.0, 4.0, 135.0, 70.0, 183.0, 154.0, (3.0 + (2.0/5.0)), (3.0 + (2.0/5.0)) )
+			  << std::endl;
+
+	std::cout << "Calculated bilinear interpolation for data set 6: "
+			  << bilinear_interpolate( 5.0, 4.0, 3.0, 4.0, 135.0, 70.0, 183.0, 154.0, (3.0 + (2.0/5.0)), (6.0 + (2.0/5.0)) )
 			  << std::endl;
 
 	return 0;
