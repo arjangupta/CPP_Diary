@@ -46,6 +46,11 @@ double linear_interpolate ( double x1, double x2, double q1, double q2, double x
  * 3) (x_interpol, y_interpol) is the location of the point at which we want the
  *	  interpolation done
  *
+ * Visual:
+ *  q11---q21
+ *   |     |
+ *  q12---q22
+ *
  * Returns:
  * A double which is the value at (x_interpol, y_interpol)
  *
@@ -85,6 +90,10 @@ int main ()
 
 	std::cout << "Calculated bilinear interpolation for data set 6: "
 			  << bilinear_interpolate( 5.0, 4.0, 3.0, 4.0, 135.0, 70.0, 183.0, 154.0, (3.0 + (2.0/5.0)), (6.0 + (2.0/5.0)) )
+			  << std::endl;
+
+	std::cout << "Calculated bilinear interpolation for data set 7: "
+			  << bilinear_interpolate( 3.0, 4.0, 3.0, 4.0, 135.0, 0.0, 183.0, 154.0, (3.0 + (2.0/5.0)), (3.0 + (2.0/5.0)) )
 			  << std::endl;
 
 	return 0;
