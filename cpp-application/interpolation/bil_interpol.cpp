@@ -20,7 +20,7 @@
 double linear_interpolate ( double x1, double x2, double q1, double q2, double x_interpol )
 {
 	return ( ( q1 * ( ( x2 - x_interpol ) / ( x2 - x1 ) ) ) + 
-           ( q2 * ( ( x_interpol - x1 ) / ( x2 - x1 ) ) ) );
+             ( q2 * ( ( x_interpol - x1 ) / ( x2 - x1 ) ) ) );
 }
 
 /* Preconditions:
