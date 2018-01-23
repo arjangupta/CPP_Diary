@@ -106,7 +106,7 @@ int main ()
 			  << std::endl;
 
 	std::cout << "Calculated bilinear interpolation for data set 8 (should be same as set 2): "
-			  << bilinear_interpolate( 9.0, 10.0, 20.0, 20.0, 249.0, 218.0, 100.0, 100.0, (9.0 + (2.0/5.0)), 20.0 ) 
+			  << bilinear_interpolate( 9.0, 10.0, 20.0, 20.0, 249.0, 218.0, 249.0, 218.0, (9.0 + (2.0/5.0)), 20.0 ) 
 			  << std::endl;
 
 	return 0;
