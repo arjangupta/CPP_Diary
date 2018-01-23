@@ -39,7 +39,7 @@ double linear_interpolate ( double x1, double x2, double q1, double q2, double x
 	// in which case, there's nothing to interpoloate
 	if ( x1 == x2 )
 	{
-		return x1;
+		return q1;
 	}
 
 	// Rest assured, apply the formula
@@ -103,6 +103,10 @@ int main ()
 
 	std::cout << "Calculated bilinear interpolation for data set 7: "
 			  << bilinear_interpolate( 3.0, 4.0, 3.0, 4.0, 135.0, 0.0, 183.0, 154.0, (3.0 + (2.0/5.0)), (3.0 + (2.0/5.0)) )
+			  << std::endl;
+
+	std::cout << "Calculated bilinear interpolation for data set 8 (should be same as set 2): "
+			  << bilinear_interpolate( 9.0, 10.0, 20.0, 20.0, 249.0, 218.0, 100.0, 100.0, (9.0 + (2.0/5.0)), 20.0 ) 
 			  << std::endl;
 
 	return 0;
