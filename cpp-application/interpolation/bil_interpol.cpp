@@ -6,10 +6,10 @@
  
 /* Preconditions:
  * 1) x1 and x2 are the locations of the points between which interpolation is
- *	  to be performed
+ *	  to be performed, so x1 < x2
  * 2) q1 is the value at x1 and q2 is the value at x2
  * 3) x_interpol is the distance from the first x_val where you want to find a 
- *	  weighted value
+ *	  weighted value, so x1 < x_interpol < x2
  * 
  * Returns:
  * A double that is the calculated interpolated value ( q_interpol )
@@ -19,21 +19,30 @@
  */
 double linear_interpolate ( double x1, double x2, double q1, double q2, double x_interpol )
 {
-	// Check 1
-	if ( x1 >= x2 )
+	// Ascending order check 1 
+	if ( x1 > x2 )
 	{
-		std::cout << "x1 cannot be larger than or equal to x2. Please rectify." << std::endl;
-		return 0.0;
+		// Maybe you meant to swap the values, so I'll do it for you
+		double tmp = x1;
+		x1 = x2;
+		x2 = tmp;
 	}
 
-	// Check 2
+	// Ascending order check 2
 	if ( x_interpol < x1 || x_interpol > x2 )
 	{
 		std::cout << "x_interpol cannot be smaller than x1 or larger than x2. Please rectify." << std::endl; 
 		return 0.0;
 	}
 
-	// All good, apply the formula
+	// Check if the values actually the same,
+	// in which case, there's nothing to interpoloate
+	if ( x1 == x2 )
+	{
+		return x1;
+	}
+
+	// Rest assured, apply the formula
 	return ( ( q1 * ( ( x2 - x_interpol ) / ( x2 - x1 ) ) ) + 
              ( q2 * ( ( x_interpol - x1 ) / ( x2 - x1 ) ) ) );
 }
@@ -89,7 +98,7 @@ int main ()
 			  << std::endl;
 
 	std::cout << "Calculated bilinear interpolation for data set 6: "
-			  << bilinear_interpolate( 5.0, 4.0, 3.0, 4.0, 135.0, 70.0, 183.0, 154.0, (3.0 + (2.0/5.0)), (6.0 + (2.0/5.0)) )
+			  << bilinear_interpolate( 5.0, 4.0, 4.0, 3.0, 135.0, 70.0, 183.0, 154.0, (4.0 + (2.0/5.0)), (3.0 + (2.0/5.0)) )
 			  << std::endl;
 
 	std::cout << "Calculated bilinear interpolation for data set 7: "
