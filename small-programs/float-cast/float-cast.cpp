@@ -34,7 +34,12 @@ int main()
     uint32_t uint32_max = UINT32_MAX;
     std::cout << "The max uint32_t is: " << uint32_max << "\n";
     float uint32max_float = UINT32_MAX;
-    std::cout << std::setiosflags(std::ios::fixed) << "Assign max of uint32_t to float: " << uint32max_float << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << "Assign max of uint32_t to float: " << uint32max_float << "\n\n";
+
+    //memcpy from uint8 to uint32
+    uint32_t uint8arr_to_uint32 = 0;
+    memcpy(&uint8arr_to_uint32, byte_arr, 4);
+    std::cout << "memcpy a byte array (4-long) to uint32: " << uint8arr_to_uint32 << "\n\n";
 
     //size of float
     std::cout << "The size of a float is " << sizeof(uint32max_float) << std::endl;
