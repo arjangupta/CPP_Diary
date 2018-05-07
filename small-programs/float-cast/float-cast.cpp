@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <limits>
 
 int main()
@@ -25,12 +26,12 @@ int main()
     uint8_t uint8max_plus1_plusa = UINT8_MAX + 1 + 97;
     std::cout << "The max uint8_t + 1 is: " << uint8max_plus1_plusa << "\n\n";
 
-    std::cout << "The max uint32_t is: " << UINT32_MAX << "\n";
+    uint32_t uint32_max = UINT32_MAX;
+    std::cout << "The max uint32_t is: " << uint32_max << "\n";
     float uint32max_float = UINT32_MAX;
-    uint32max_float += 0.5;
-    std::cout << setiosflags(ios::fixed) << "Assign max of uint32_t to float and add 0.5: " << uint32max_float << std::endl;
+    std::cout << std::setiosflags(std::ios::fixed) << "Assign max of uint32_t to float: " << uint32max_float << std::endl;
 
-    std::cout << "The size of a float is " << sizeof(float) << std::endl;
+    std::cout << "The size of a float is " << sizeof(uint32max_float) << std::endl;
 
     return 0;
 }
