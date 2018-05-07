@@ -81,6 +81,7 @@ double bilinear_interpolate ( double x1, double x2, double y1, double y2, double
 
 int main ()
 {
+	// Unit tests
 	std::cout << "Calculated linear interpolation for data set 1: "
 			  << linear_interpolate( 0.0, 1.0, 180.0, 109.0, (2.0/5.0) ) << std::endl;
 
