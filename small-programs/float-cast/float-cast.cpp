@@ -24,7 +24,7 @@ int main()
 
     std::cout << "The max uint8_t is: " << UINT8_MAX << "\n";
     uint8_t uint8max_plus1_plusa = UINT8_MAX + 1 + 97;
-    std::cout << "The max uint8_t + 1 is: " << uint8max_plus1_plusa << "\n\n";
+    std::cout << "The max uint8_t + 1 + 97 is: " << uint8max_plus1_plusa << "\n\n";
 
     uint32_t uint32_max = UINT32_MAX;
     std::cout << "The max uint32_t is: " << uint32_max << "\n";
