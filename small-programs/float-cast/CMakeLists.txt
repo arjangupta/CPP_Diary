@@ -1,0 +1,1 @@
+add_executable(float_cast float-cast.cpp)
