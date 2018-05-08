@@ -66,10 +66,24 @@ int main()
     
     //Convert 2-long byte array to uint16 and then float
     float precise_val = *(reinterpret_cast<uint16_t*>(byte_arr_len2));
-    std::cout << "Reintepret cast byte array to uint16_t and assign to float: " << precise_val << std::endl;
+    std::cout << "Reintepret cast byte array to uint16_t and assign to float: " << precise_val << std::endl << std::endl;
     
-    //Add 1.5 to 300
+    //Experiment: Add 1.5 to 300
+    uint16_t uint16_300 = 300;
+    uint8_t byte_arr_300[2] = {0};
+    byte_arr_300[0] = *( reinterpret_cast<uint8_t*>(&uint16_300));
+    byte_arr_300[1] = *( (reinterpret_cast<uint8_t*>(&uint16_300)) + 1 );
+
+    std::cout << "The bytes for 300 are shown here as: "
+    << static_cast<int>(byte_arr_300[0]) << " and "
+    << static_cast<int>(byte_arr_300[1]) << std::endl;
     
+    float precise_val_300 = *(reinterpret_cast<uint16_t*>(byte_arr_300));
+    precise_val_300 += 1.5;
+    
+    std::cout << "Cast to float and add 1.5: " << precise_val_300 << std::endl;
+    uint16_t final_300_manip = static_cast<uint16_t>(precise_val_300);
+    std::cout << "Cast back to uint16_t: " << final_300_manip << "\n\n";
 
     return 0;
 }
