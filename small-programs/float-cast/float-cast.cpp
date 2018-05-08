@@ -56,6 +56,13 @@ int main()
     //size of float
     std::cout << "The size of a float is " << sizeof(uint32max_float) << std::endl;
     std::cout << "The size of a double is " << sizeof(double) << std::endl;
+    
+    //Convert 2-long byte array to uint16 in 2 ways
+    uint8_t byte_arr_len2[2] = {'a', 'b'};
+    uint16_t byte_arr_uint16 = *(reinterpret_cast<uint16_t*>(byte_arr_len2));
+    std::cout << "Reinterpret cast to go from byte array to uint16_t: " << byte_arr_uint16 << std::endl;
+    uint16_t byte_arr_shift = *(byte_arr_len2 + 1); byte_arr_shift <<= 8; byte_arr_shift += *byte_arr_len2; //this code was written on little-endian system
+    std::cout << "Bitwise shift to go from byte array to uint16_t:" << byte_arr_shift << std::endl;
 
     return 0;
 }
