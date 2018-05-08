@@ -42,8 +42,8 @@ int main()
     std::cout << "memcpy a byte array (4-long) to uint32: " << byte_array_to_uint32 << "\n";
     
     //uint32 to float
-    float byte_array_float = byte_array_to_uint32;
-    std::cout << "Assignment of a uint32 to a float: " << byte_array_float << "\n";
+    double byte_array_float = byte_array_to_uint32;
+    std::cout << "Assignment of a uint32 to a float: " << (byte_array_float) << "\n";
     
     //float to uint32
     uint32_t convert_from_float = byte_array_float;
@@ -51,10 +51,11 @@ int main()
     
     //float to byte-array
     *byte_arr = static_cast<uint32_t>(byte_array_float);
-    std::cout << "Cast float to uint32_t and assign to 4-long byte array: " << static_cast<int>(byte_arr[0]) << byte_arr[1] << byte_arr[2] << byte_arr[3] << "\n\n";
+    std::cout << "Cast float to uint32_t and assign to 4-long byte array: " << byte_arr[0] << byte_arr[1] << byte_arr[2] << byte_arr[3] << "\n\n";
 
     //size of float
     std::cout << "The size of a float is " << sizeof(uint32max_float) << std::endl;
+    std::cout << "The size of a double is " << sizeof(double) << std::endl;
 
     return 0;
 }
