@@ -14,10 +14,10 @@ int main()
     int j  = 9;
     int *r = &j;
 
-    std::endl;
-    std::cout << "Are p and q pointing at the same address? "         << yesOrNo(p == q)   << std::endl;
-    std::cout << "Are p and r pointing at the same address? "         << yesOrNo(p == r)   << std::endl;
-    std::cout << "Are p and q pointing to an int of the same value? " << yesOrNo(*p == *q) << std::endl;
-    std::cout << "Are p and r pointing to an int of the same value? " << yesOrNo(*p == *r) << std::endl;
-    std::endl;
+    std::cout << std::endl
+              << "Are p and q pointing at the same address? "         << yesOrNo(p == q)   << std::endl
+              << "Are p and r pointing at the same address? "         << yesOrNo(p == r)   << std::endl
+              << "Are p and q pointing to an int of the same value? " << yesOrNo(*p == *q) << std::endl
+              << "Are p and r pointing to an int of the same value? " << yesOrNo(*p == *r) << std::endl
+              << std::endl;
 }
