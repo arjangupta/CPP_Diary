@@ -15,9 +15,10 @@ int main()
     int *r = &j;
 
     std::cout << std::endl
-              << "Are p and q pointing at the same address? "         << yesOrNo(p == q)   << std::endl
-              << "Are p and r pointing at the same address? "         << yesOrNo(p == r)   << std::endl
-              << "Are p and q pointing to an int of the same value? " << yesOrNo(*p == *q) << std::endl
-              << "Are p and r pointing to an int of the same value? " << yesOrNo(*p == *r) << std::endl
+              << "Are p and q pointing to the same address? " << yesOrNo(p == q) << std::endl
+              << "Are p and r pointing to the same address? " << yesOrNo(p == r) << std::endl
+              << std::endl
+              << "Are p and q pointing to addresses at which there are ints of the same value? " << yesOrNo(*p == *q) << std::endl
+              << "Are p and r pointing to addresses at which there are ints of the same value? " << yesOrNo(*p == *r) << std::endl
               << std::endl;
 }
