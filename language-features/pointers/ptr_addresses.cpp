@@ -1,4 +1,10 @@
 #include <iostream>
+#include <string>
+
+std::string yesOrNo(bool expression)
+{
+    return ( (expression) ? ("Yes.") : ("No.") );
+}
 
 int main()
 {
@@ -7,16 +13,12 @@ int main()
     int *q = p;
     int j = 9;
     int *r = &j;
+
+    std::cout << "Are p and q pointing at the same address? " << yesOrNo(p == q) << std::endl;
     
-    bool b = p == q;
-    std::cout << "Are p and q pointing at the same address? " << b << std::endl;
+    std::cout << "Are p and r pointing at the same address? " << yesOrNo(p == r) << std::endl;
     
-    b = p == r;
-    std::cout << "Are p and r pointing at the same address? " << b << std::endl;
+    std::cout << "Are p and q pointing to an int of the same value? " << yesOrNo(*p == *q) << std::endl;
     
-    b = *p == *q;
-    std::cout << "Are the values at the addresses of p and q the same? " << b << std::endl;
-    
-    b = *p == *r;
-    std::cout << "Are the values at the addresses of p and r the same? " << b << std::endl;
+    std::cout << "Are p and r pointing to an int of the same value? " << yesOrNo(*p == *r) << std::endl;
 }
