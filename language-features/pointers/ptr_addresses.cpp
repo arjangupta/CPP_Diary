@@ -17,6 +17,9 @@ int main()
     std::cout << std::endl
               << "Are p and q pointing to the same address? " << yesOrNo(p == q) << std::endl
               << "Are p and r pointing to the same address? " << yesOrNo(p == r) << std::endl
+              << "Value of p: " << p << std::endl
+              << "Value of q: " << q << std::endl
+              << "Value of r: " << r << std::endl
               << std::endl
               << "Are p and q pointing to addresses at which there are ints of the same value? " << yesOrNo(*p == *q) << std::endl
               << "Are p and r pointing to addresses at which there are ints of the same value? " << yesOrNo(*p == *r) << std::endl
