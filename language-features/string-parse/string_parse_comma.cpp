@@ -6,7 +6,7 @@
 int main()
 {
     //Declarations
-    std::string str = "4";//,5,6,7";
+    std::string str = "0, 1";//,5,6,7";
     std::vector<int> int_vect;
     std::stringstream ss(str);
 
