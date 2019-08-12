@@ -7,7 +7,7 @@ int main()
 
     while(input != "q")
     {
-        std::cin >> input;
+        getline(std::cin, input);
 
         std::cout << input << std::endl;
     }
