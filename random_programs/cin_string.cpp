@@ -7,7 +7,13 @@ int main()
 
     while(input != "q")
     {
-        getline(std::cin, input);
+        std::getline(std::cin, input);
+
+        if (std::cin.fail())
+        {
+            std::cout << "cin has failed" << std::endl;
+            break;
+        }
 
         std::cout << input << std::endl;
     }
