@@ -1,4 +1,4 @@
-### valgrind --leak-check=yes ./a.out
+### valgrind --leak-check=full --show-leak-kinds=all ./a.out
 ==2006== Memcheck, a memory error detector  
 ==2006== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.  
 ==2006== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info  
