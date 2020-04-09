@@ -11,9 +11,10 @@ bool _data_ready;
 
 void waitingForWork(int id)
 {
-    std::cout << "T" << id << ": Waiting..." << std::endl;
-    
     std::unique_lock<std::mutex> work_lock(_main_mutex);
+
+    std::cout << "T" << id << ": Waiting..." << std::endl;
+
     _cond_var.wait(work_lock, []{return _data_ready;});
 
     _shared_work[1] = 2;
@@ -44,6 +45,7 @@ int main()
     std::thread t2(waitingForWork, 2);
     std::thread t3(setDataReady, 3);
 
+    // Wait for the threads to finish executing
     t1.join();
     t2.join();
     t3.join();
