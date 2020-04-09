@@ -12,24 +12,24 @@ std::atomic_bool _is_data_ready(false);
 
 void waitingForWork(int thread_id)
 {
-    std::cout << "Waiting..." << std::endl;
+    std::cout << "T" << thread_id << ": Waiting..." << std::endl;
     
     while ( ! _is_data_ready.load() )
     {
-        std::cout << "About to sleep" << std::endl; 
+        std::cout << "T" << thread_id << ": About to sleep" << std::endl; 
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     _shared_work[1] = 2;
-    std::cout << "Work done." << std::endl;
+    std::cout << "T" << thread_id << ": Work done." << std::endl;
 }
 
-void setDataReady()
+void setDataReady(int thread_id)
 {
     _shared_work   = {1, 0, 3};
     _is_data_ready = true;
 
-    std::cout << "Data has been made ready." << std::endl;
+    std::cout << "T" << thread_id << ": Data has been made ready." << std::endl;
 }
 
 int main()
