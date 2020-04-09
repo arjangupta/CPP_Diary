@@ -8,7 +8,7 @@
 #include <chrono>
 
 std::vector<int> _shared_work;
-std::atomic<bool> _is_data_ready(false);
+std::atomic_bool _is_data_ready(false);
 
 void waitingForWork(int thread_id)
 {
@@ -26,10 +26,31 @@ void waitingForWork(int thread_id)
 
 void setDataReady()
 {
+    _shared_work   = {1, 0, 3};
+    _is_data_ready = true;
 
+    std::cout << "Data has been made ready." << std::endl;
 }
 
 int main()
 {
+    std::cout << std::endl;
+
+    std::thread t1(waitingForWork, 1);
+    std::thread t2(waitingForWork, 2);
+    std::thread t3(setDataReady,   3);
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    std::cout << "The vector is as follows:" << std::endl;
+    for ( auto v: _shared_work )
+    {
+        std::cout << v << " ";
+    }
+
+    std::cout << std::endl << std::endl;
+
     return 0;
 }
