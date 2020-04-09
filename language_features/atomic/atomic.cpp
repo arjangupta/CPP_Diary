@@ -20,13 +20,16 @@ void waitingForWork(int thread_id)
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
-    _shared_work[1] = 2;
+    _shared_work[1] = 20;
+    _shared_work[2] = 30;
     std::cout << "T" << thread_id << ": Work done." << std::endl;
 }
 
 void setDataReady(int thread_id)
 {
-    _shared_work   = {1, 0, 3};
+    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+
+    _shared_work   = {10, 0, 0};
     _is_data_ready = true;
 
     std::cout << "T" << thread_id << ": Data has been made ready." << std::endl;
@@ -35,6 +38,8 @@ void setDataReady(int thread_id)
 int main()
 {
     std::cout << std::endl;
+
+    _is_data_ready = false;
 
     std::thread t1(waitingForWork, 1);
     std::thread t2(waitingForWork, 2);
