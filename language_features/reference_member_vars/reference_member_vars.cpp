@@ -10,6 +10,8 @@ struct ToiletPaperStock
 class ToiletPaperInterface
 {
 public:
+    // ToiletPaperInterface() = delete;
+
     ToiletPaperInterface(ToiletPaperStock& tp_stock) : _current_tp_stock(tp_stock)
     {}
 
@@ -44,9 +46,12 @@ int main()
     std::cout << "---- Interface 1 ----" << std::endl;
     printTPStock(tp_interface1);
 
+    // Declare another interface to view tp stock
     ToiletPaperInterface tp_interface2(tp_stock);
     std::cout << "---- Interface 2 ----" << std::endl;
     printTPStock(tp_interface2);
+
+    ToiletPaperInterface tp_interface3; // doesn't work - even without deleting the default constructor
 
     return 0;
 }
