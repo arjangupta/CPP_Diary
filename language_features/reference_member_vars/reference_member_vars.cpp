@@ -53,5 +53,16 @@ int main()
 
     //ToiletPaperInterface tp_interface3; // doesn't work - even without deleting the default constructor
 
+    std::cout << std::endl << "New toilet paper shipment arrived in store!" << std::endl << std::endl;
+
+    tp_stock._aisle_name = "Aisle 6";
+    tp_stock._number_of_tp_rolls = 200;
+
+    // Show updated values via both interfaces
+    std::cout << "---- Interface 1 ----" << std::endl;
+    printTPStock(tp_interface1);
+    std::cout << "---- Interface 2 ----" << std::endl;
+    printTPStock(tp_interface2);    
+
     return 0;
 }
