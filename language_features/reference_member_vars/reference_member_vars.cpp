@@ -10,8 +10,8 @@ struct ToiletPaperStock
 class ToiletPaperInterface
 {
 public:
-    // ToiletPaperInterface(ToiletPaperStock& tp_stock) : _current_tp_stock(tp_stock)
-    // {}
+    ToiletPaperInterface(ToiletPaperStock& tp_stock) : _current_tp_stock(tp_stock)
+    {}
 
     const std::string& getAisleName() const
     {
@@ -40,8 +40,13 @@ int main()
     tp_stock._number_of_tp_rolls = 0;
     
     // Declare an interface to view tp stock
-    ToiletPaperInterface tp_interface();
-    printTPStock(tp_interface);
+    ToiletPaperInterface tp_interface1(tp_stock);
+    std::cout << "---- Interface 1 ----" << std::endl;
+    printTPStock(tp_interface1);
+
+    ToiletPaperInterface tp_interface2(tp_stock);
+    std::cout << "---- Interface 2 ----" << std::endl;
+    printTPStock(tp_interface2);
 
     return 0;
 }
