@@ -1,1 +1,1 @@
-add_subdirectory(float-cast)
+add_subdirectory(float_cast)

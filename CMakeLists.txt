@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message(STATUS "C++11 support enabled by default.")
 
-add_subdirectory(small-programs)
-# add_subdirectory(language-features)
+#add_subdirectory(small_programs)
+add_subdirectory(thread_pool)
