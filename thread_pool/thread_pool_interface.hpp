@@ -6,14 +6,16 @@
 namespace thread_pool_example
 {
 
-// typedef int 
+class GenericThreadUser;
+typedef void (GenericThreadUser::*thread_user_function_ptr_t)();
 
-class ThreadPoolInterface
+class ThreadPoolInterface final
 {
 public:
     ThreadPoolInterface() = delete;
-    ThreadPoolInterface(int max_worker_threads);
+    ThreadPoolInterface(int);
     ~ThreadPoolInterface();
+    void sendJob(GenericThreadUser*, thread_user_function_ptr_t);
 private:
     ::ThreadPool _thread_pool;
 };
