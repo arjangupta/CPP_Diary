@@ -14,9 +14,11 @@ public:
     GenericThreadUser() = delete;
     GenericThreadUser(std::string&, ThreadPoolInterface&);
     virtual ~GenericThreadUser();
-private:
-    std::string& _user_name; 
+protected:
+    std::string& _user_name;
     ThreadPoolInterface& _thread_pool_interface;
+private:
+    virtual void _createSomeJob();
 };
 
 } // namespace thread_pool_example
