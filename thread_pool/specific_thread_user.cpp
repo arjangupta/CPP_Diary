@@ -14,9 +14,16 @@ SpecificThreadUser::SpecificThreadUser( std::string& user_name, ThreadPoolInterf
 SpecificThreadUser::~SpecificThreadUser()
 {}
 
-void SpecificThreadUser::_createSomeJob()
+void SpecificThreadUser::_createJobs()
 {
-    // custom impl
+    thread_user_function_ptr_t wait_for_food = this->_waitForFood;
+    _thread_pool_interface.sendJob(this, wait_for_food);
+}
+
+void SpecificThreadUser::_waitForFood()
+{
+    // make this thread sleep
+    // "Name" is ready for food
 }
 
 } // namespace thread_pool_example

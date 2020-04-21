@@ -14,7 +14,9 @@ public:
     SpecificThreadUser(std::string&, ThreadPoolInterface&);
     ~SpecificThreadUser();
 private:
-    void _createSomeJob() override;
+    void _createJobs() override;
+    void _waitForFood();
+    void _indicateTiredNess();
 };
 
 } // namespace thread_pool_example

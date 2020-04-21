@@ -15,7 +15,12 @@ GenericThreadUser::GenericThreadUser(std::string& user_name, ThreadPoolInterface
 GenericThreadUser::~GenericThreadUser()
 {}
 
-void GenericThreadUser::_createSomeJob()
+void GenericThreadUser::generateMessages()
+{
+    _createJobs();
+}
+
+void GenericThreadUser::_createJobs()
 {
     // Needs to be overidden and custom implemented by dervied class
 }

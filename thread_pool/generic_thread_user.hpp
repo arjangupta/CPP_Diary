@@ -4,9 +4,16 @@
 #include "thread_pool_interface.hpp"
 
 #include <string>
+#include <future>
 
 namespace thread_pool_example
 {
+
+struct ThreadUserMessage final
+{
+    std::string _payload;
+    bool        _is_important;
+};
 
 class GenericThreadUser
 {
@@ -14,11 +21,13 @@ public:
     GenericThreadUser() = delete;
     GenericThreadUser(std::string&, ThreadPoolInterface&);
     virtual ~GenericThreadUser();
+    void generateMessages();
 protected:
     std::string& _user_name;
     ThreadPoolInterface& _thread_pool_interface;
+    std::queue <std::future<ThreadUserMessage>> _outbound_queue;
 private:
-    virtual void _createSomeJob();
+    virtual void _createJobs();
 };
 
 } // namespace thread_pool_example
