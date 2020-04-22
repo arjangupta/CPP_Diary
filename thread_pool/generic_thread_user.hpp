@@ -5,6 +5,7 @@
 
 #include <string>
 #include <future>
+#include <mutex>
 
 namespace thread_pool_example
 {
@@ -23,9 +24,10 @@ public:
     virtual ~GenericThreadUser();
     void generateMessages();
 protected:
-    std::string& _user_name;
-    ThreadPoolInterface& _thread_pool_interface;
-    std::queue <std::future<ThreadUserMessage>> _outbound_queue;
+    std::string&                               _user_name;
+    std::mutex                                 _mutex_user_name;
+    ThreadPoolInterface&                       _thread_pool_interface;
+    std::queue<std::future<ThreadUserMessage>> _outbound_queue;
 private:
     virtual void _createJobs();
 };
