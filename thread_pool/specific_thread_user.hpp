@@ -16,7 +16,7 @@ public:
 private:
     void _createJobs() override;
     void _waitForFood();
-    void _indicateTiredNess();
+    void _decideToExercise();
 };
 
 } // namespace thread_pool_example

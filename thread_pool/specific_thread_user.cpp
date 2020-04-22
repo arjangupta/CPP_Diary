@@ -16,14 +16,22 @@ SpecificThreadUser::~SpecificThreadUser()
 
 void SpecificThreadUser::_createJobs()
 {
-    thread_user_function_ptr_t wait_for_food = this->_waitForFood;
-    _thread_pool_interface.sendJob(this, wait_for_food);
+    _thread_pool_interface.sendSpecificThreadUserJob(this, &SpecificThreadUser::_waitForFood);
+    _thread_pool_interface.sendSpecificThreadUserJob(this, &SpecificThreadUser::_decideToExercise);
 }
 
 void SpecificThreadUser::_waitForFood()
 {
-    // make this thread sleep
-    // "Name" is ready for food
+    std::cout << _user_name << " is waiting for food..." << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    std::cout << _user_name << " now requires food!";
+}
+
+void SpecificThreadUser::_decideToExercise()
+{
+    std::cout << _user_name << " is thinking of exercising..." << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << _user_name << " has decided to do " << rand() % 10 << " x 100 meter sprints!" << std::endl;
 }
 
 } // namespace thread_pool_example

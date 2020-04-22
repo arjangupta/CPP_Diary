@@ -7,7 +7,10 @@ namespace thread_pool_example
 {
 
 class GenericThreadUser;
-typedef void (GenericThreadUser::*thread_user_function_ptr_t)();
+typedef void (GenericThreadUser::*generic_thread_user_function_ptr_t)();
+
+class SpecificThreadUser;
+typedef void (SpecificThreadUser::*specific_thread_user_function_ptr_t)();
 
 class ThreadPoolInterface final
 {
@@ -15,7 +18,8 @@ public:
     ThreadPoolInterface() = delete;
     ThreadPoolInterface(int);
     ~ThreadPoolInterface();
-    void sendJob(GenericThreadUser*, thread_user_function_ptr_t);
+    void sendGenericThreadUserJob(GenericThreadUser*, generic_thread_user_function_ptr_t);
+    void sendSpecificThreadUserJob(SpecificThreadUser*, specific_thread_user_function_ptr_t);
 private:
     ::ThreadPool _thread_pool;
 };
