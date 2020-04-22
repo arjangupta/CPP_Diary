@@ -20,9 +20,12 @@ int main()
 
     std::cout << std::endl;
 
-    bool not_done = true;
-    while ( not_done )
-    {}
+    for ( int i = 0; i < 3; ++i )
+    {
+        user_array[i].generateMessages();
+    }
+
+    std::cout << "We are now waiting for the demands of our queens!" << std::endl;
 
     return 0;
 }
