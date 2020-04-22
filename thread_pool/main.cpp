@@ -27,5 +27,24 @@ int main()
 
     std::cout << "We are now waiting for the demands of our queens!" << std::endl;
 
+    int obtained_messages = 0;
+    while ( obtained_messages < 12 )
+    {
+        for ( int i = 0; i < 3; ++i )
+        {
+            if ( user_array[i].hasOutboundMessages() )
+            {
+                ThreadUserMessage new_message = user_array[i].getOldestMessage();
+                if ( new_message._is_important )
+                {
+                    std::cout << "Important: ";
+                }
+                std::cout << new_message._payload;
+                user_array[i].notifyUsageOfOldestMessage();
+                ++obtained_messages;
+            }
+        }
+    }
+
     return 0;
 }

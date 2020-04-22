@@ -24,10 +24,11 @@ public:
     virtual ~GenericThreadUser();
     void generateMessages();
 protected:
-    std::string&                               _user_name;
-    std::mutex                                 _mutex_user_name;
-    ThreadPoolInterface&                       _thread_pool_interface;
-    std::queue<std::future<ThreadUserMessage>> _outbound_queue;
+    ThreadPoolInterface&          _thread_pool_interface;
+    std::string&                  _user_name;
+    std::mutex                    _mutex_user_name;
+    std::queue<ThreadUserMessage> _outbound_queue;
+    std::mutex                    _mutex_outbound_queue;
 private:
     virtual void _createJobs();
 };
