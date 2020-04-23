@@ -33,7 +33,7 @@ void SpecificThreadUser::_waitForFood()
     waiting_for_food_message._payload      = output_str_stream.str();
     waiting_for_food_message._is_important = false;
     
-    std::this_thread::sleep_for(std::chrono::seconds(3));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     {
     std::lock_guard<std::mutex> outbound_queue_lock(_mutex_outbound_queue);
