@@ -14,6 +14,7 @@ struct ThreadUserMessage final
 {
     std::string _payload;
     bool        _is_important;
+    bool        _is_empty;
 };
 
 class GenericThreadUser
@@ -23,6 +24,9 @@ public:
     GenericThreadUser(std::string&, ThreadPoolInterface&);
     virtual ~GenericThreadUser();
     void generateMessages();
+    bool hasOutboundMessages();
+    void getOldestMessage(ThreadUserMessage&);
+    void notifyUsageOfOldestMessage();
 protected:
     ThreadPoolInterface&          _thread_pool_interface;
     std::string&                  _user_name;

@@ -1,3 +1,5 @@
+set(CMAKE_BUILD_TYPE Debug)
+
 add_executable(thread_pool_exec
     main.cpp
     thread_pool_interface.cpp

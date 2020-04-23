@@ -25,7 +25,7 @@ int main()
         user_array[i].generateMessages();
     }
 
-    std::cout << "We are now waiting for the demands of our queens!" << std::endl;
+    std::cout << "We are waiting for the demands of our queens." << std::endl;
 
     int obtained_messages = 0;
     while ( obtained_messages < 12 )
@@ -34,7 +34,8 @@ int main()
         {
             if ( user_array[i].hasOutboundMessages() )
             {
-                ThreadUserMessage new_message = user_array[i].getOldestMessage();
+                ThreadUserMessage new_message;
+                user_array[i].getOldestMessage(new_message);
                 if ( new_message._is_important )
                 {
                     std::cout << "Important: ";

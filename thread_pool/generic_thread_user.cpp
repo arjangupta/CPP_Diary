@@ -20,6 +20,30 @@ void GenericThreadUser::generateMessages()
     _createJobs();
 }
 
+bool GenericThreadUser::hasOutboundMessages()
+{
+    std::lock_guard<std::mutex> lock_outbound_queue(_mutex_outbound_queue);
+    return ! _outbound_queue.empty();
+}
+
+void GenericThreadUser::getOldestMessage(ThreadUserMessage& message)
+{
+    if ( ! hasOutboundMessages() )
+    {
+        message._is_empty = true;
+        return;
+    }
+    std::lock_guard<std::mutex> lock_outbound_queue(_mutex_outbound_queue);
+    message = _outbound_queue.front();
+    return;
+}
+
+void GenericThreadUser::notifyUsageOfOldestMessage()
+{
+    std::lock_guard<std::mutex> lock_outbound_queue(_mutex_outbound_queue);
+    _outbound_queue.pop();
+}
+
 void GenericThreadUser::_createJobs()
 {
     // Needs to be overidden and custom implemented by dervied class
