@@ -32,7 +32,7 @@ protected:
     std::string                   _user_name;
     std::mutex                    _mutex_user_name;
     std::queue<ThreadUserMessage> _outbound_queue;
-    std::mutex mutable            _mutex_outbound_queue;
+    mutable std::mutex            _mutex_outbound_queue;
 private:
     virtual void _createJobs();
 };
