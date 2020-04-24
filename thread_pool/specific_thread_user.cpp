@@ -6,7 +6,8 @@
 namespace thread_pool_example
 {
 
-SpecificThreadUser::SpecificThreadUser( std::string& user_name, ThreadPoolInterface& thread_interface) :
+SpecificThreadUser::SpecificThreadUser( const std::string& user_name,
+                                        ThreadPoolInterface& thread_interface) :
     GenericThreadUser::GenericThreadUser(user_name, thread_interface)
 {
     std::cout << "SpecificThreadUser constructor has been called: " << _user_name << std::endl;

@@ -21,7 +21,7 @@ class GenericThreadUser
 {
 public:
     GenericThreadUser() = delete;
-    GenericThreadUser(std::string&, ThreadPoolInterface&);
+    GenericThreadUser(const std::string&, ThreadPoolInterface&);
     virtual ~GenericThreadUser();
     void generateMessages();
     bool hasOutboundMessages();
@@ -29,7 +29,7 @@ public:
     void notifyUsageOfOldestMessage();
 protected:
     ThreadPoolInterface&          _thread_pool_interface;
-    std::string&                  _user_name;
+    std::string                   _user_name;
     std::mutex                    _mutex_user_name;
     std::queue<ThreadUserMessage> _outbound_queue;
     std::mutex                    _mutex_outbound_queue;

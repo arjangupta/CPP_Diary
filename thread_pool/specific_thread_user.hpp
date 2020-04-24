@@ -11,7 +11,7 @@ class SpecificThreadUser final : public GenericThreadUser
 {
 public:
     SpecificThreadUser() = delete;
-    SpecificThreadUser(std::string&, ThreadPoolInterface&);
+    SpecificThreadUser(const std::string&, ThreadPoolInterface&);
     ~SpecificThreadUser();
 private:
     void _createJobs() override;
