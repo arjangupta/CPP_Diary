@@ -21,13 +21,13 @@ void GenericThreadUser::generateMessages()
     _createJobs();
 }
 
-bool GenericThreadUser::hasOutboundMessages()
+bool GenericThreadUser::hasOutboundMessages() const
 {
     std::lock_guard<std::mutex> lock_outbound_queue(_mutex_outbound_queue);
     return ! _outbound_queue.empty();
 }
 
-void GenericThreadUser::getOldestMessage(ThreadUserMessage& message)
+void GenericThreadUser::getOldestMessage(ThreadUserMessage& message) const
 {
     if ( ! hasOutboundMessages() )
     {

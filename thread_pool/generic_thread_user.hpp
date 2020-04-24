@@ -24,15 +24,15 @@ public:
     GenericThreadUser(const std::string&, ThreadPoolInterface&);
     virtual ~GenericThreadUser();
     void generateMessages();
-    bool hasOutboundMessages();
-    void getOldestMessage(ThreadUserMessage&);
+    bool hasOutboundMessages() const;
+    void getOldestMessage(ThreadUserMessage&) const;
     void notifyUsageOfOldestMessage();
 protected:
     ThreadPoolInterface&          _thread_pool_interface;
     std::string                   _user_name;
     std::mutex                    _mutex_user_name;
     std::queue<ThreadUserMessage> _outbound_queue;
-    std::mutex                    _mutex_outbound_queue;
+    std::mutex mutable            _mutex_outbound_queue;
 private:
     virtual void _createJobs();
 };
