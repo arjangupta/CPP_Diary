@@ -1,7 +1,5 @@
 #include "thread_pool_interface.hpp"
 
-#include <functional>
-
 namespace thread_pool_example
 {
 
