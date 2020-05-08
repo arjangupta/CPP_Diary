@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <fcntl.h>
+#include <thread>
 
 class SomeObject final
 {
@@ -23,13 +24,13 @@ public:
             std::cout << "Successfully opened the watchdog file." << std::endl;
         }
 
-        if (write(fd, "\0", 1) != 1)
+        if (write(fd, "x", 1) != 1)
         {
             std::cout << "Failed to write to watchdog file." << std::endl;
         }
         else
         {
-            std::cout << "Wrote null char to watchdog file." << std::endl;
+            std::cout << "Wrote 1 char to watchdog file." << std::endl;
         }
         close(fd);
     }
@@ -42,8 +43,7 @@ int main()
     while(1)
     {
         watchdog_refresher.refreshWatchdog();
-        sleep(10);
-        // std::this_thread::sleep_for(std::chrono::seconds(10));
+        std::this_thread::sleep_for(std::chrono::seconds(10));
     }
 
     return 0;
