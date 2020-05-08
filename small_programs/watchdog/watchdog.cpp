@@ -1,3 +1,5 @@
+// NOTE: this method does not work! The c-style approach works.
+
 #include <iostream>
 #include <fstream>
 #include <thread>
@@ -16,7 +18,7 @@ int main()
     int i = 0;
 	while(1)
     {
-        watchdog_file << "\0";
+        watchdog_file.write("x", 1);
 	    if ( watchdog_file.fail() )
         {
             std::cout << "Failed to write to the watchdog file." << std::endl;
