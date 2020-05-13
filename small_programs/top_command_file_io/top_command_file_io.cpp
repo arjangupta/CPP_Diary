@@ -11,7 +11,19 @@ int main()
     std::ifstream top_output_file("./top_output.txt");
     std::string file_contents((std::istreambuf_iterator<char>(top_output_file)), std::istreambuf_iterator<char>());
 
-    std::cout << file_contents << std::endl;
+    system("rm ./top_output.txt");
+
+    const char* file_contents_cstr = file_contents.c_str();
+    int file_contents_len = file_contents.length();
+
+    for (int i = 0; i < file_contents_len; ++i)
+    {
+        if ( file_contents_cstr[i] == '\n')
+        {
+            std::cout << " <---- ONE WHOLE LINE";
+        }
+        std::cout << file_contents_cstr[i];
+    }
 
     return 0;
 }
