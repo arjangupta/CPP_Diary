@@ -25,5 +25,10 @@ int main()
     int total_ram = std::stoi(file_contents.substr(first_number, end_of_first_num));
     std::cout << "Total memory in int: " << total_ram << std::endl;
 
+    // Print out memory usage
+    float available_percent = float(available_ram) / float( total_ram );
+    float used_percent = (float(1.0) - available_percent) * float(100.0);
+    std::cout << "Used ram percent is: " << used_percent << std::endl;
+
     return 0;
 }
