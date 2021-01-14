@@ -14,7 +14,10 @@ int main()
     // Look for the first number at the end of the line
     std::cout << "At pos 79, the file reads: " << file_contents[78] << std::endl;
 
-    // Print out available memory
+    // From the end of the file, rfind the first space
+    std::size_t last_space = file_contents.rfind(" ", (file_contents.size() - 1));
+    std::cout << "Last space to the end of file: " << file_contents.substr(last_space + 1) << std::endl;
+    std::cout << "And, converted to int: " << std::stoi(file_contents.substr(last_space + 1)) << std::endl;
 
     return 0;
 }
