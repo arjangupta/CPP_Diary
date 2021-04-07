@@ -9,3 +9,4 @@ message(STATUS "C++11 support enabled by default.")
 
 #add_subdirectory(small_programs)
 add_subdirectory(thread_pool)
+add_subdirectory(language_features)
