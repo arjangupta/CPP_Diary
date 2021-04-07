@@ -75,5 +75,33 @@ int main()
         std::cout << "Eval 3: FALSE!" << std::endl;
     }
 
+    std::cout << "----------------" << std::endl;
+
+    // Chain up conditionals, experiment 4
+    if ( (funcA(false) || funcB(false) || funcC(false)) 
+        && 
+         ( funcD(true) || funcE(true) ) )
+    {
+        std::cout << "Eval 4: TRUE!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Eval 4: FALSE!" << std::endl;
+    }
+
+    std::cout << "----------------" << std::endl;
+
+    // Experiment 5
+    if ( (funcA(false) || funcB(true) || funcC(false)) 
+        && 
+         ( funcD(true) || funcE(true) ) )
+    {
+        std::cout << "Eval 5: TRUE!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Eval 5: FALSE!" << std::endl;
+    }
+
     return 0;
 }
