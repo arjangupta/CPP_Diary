@@ -30,6 +30,12 @@ bool funcE(bool val)
     return val;
 }
 
+bool funcF(bool val)
+{
+    std::cout << "Function F!" << std::endl;
+    return val;
+}
+
 int main()
 {
     // Chain up conditionals
@@ -43,6 +49,19 @@ int main()
     else
     {
         std::cout << "Eval 1 FALSE!" << std::endl;
+    }
+
+    // Chain up conditionals, experiment 2
+    if ( funcA(false) 
+        || funcB(false)
+        || funcC(false) && funcD(true)
+        || funcE(true) )
+    {
+        std::cout << "Eval 2: TRUE!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Eval 2: FALSE!" << std::endl;
     }
 
     return 0;
